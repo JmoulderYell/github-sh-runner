@@ -20,9 +20,9 @@ response = requests.post(url, headers=headers)
 response_json = response.json()
 token = json.dumps(response_json['token'])
 print(token) > '/tmp/runnertoken.txt'
-f = open("/tmp/runnertoken.txt", "w")
-f.write(token)
-f.close()
+#f = open("/tmp/runnertoken.txt", "w")
+#f.write(token)
+#f.close()
 
 ghasrunnerconfig = subprocess.Popen(["/gh-actions-runner/config.sh --unattended --url https://github.com/YellEngineering --token {token} --name ghas-$(echo $RANDOM | md5sum | head -c 20) --runnergroup security --labels security,ghas-runner,self-hosted,poc"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 print(ghasrunnerconfig)
